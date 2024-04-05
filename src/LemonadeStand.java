@@ -15,8 +15,11 @@ public class LemonadeStand extends Application {
     int colorIntC;
     public void start(Stage firstStage){
         GridPane lemonGrid = new GridPane();
+        lemonGrid.setPrefSize(300, 200);
         Stage lemonStage = new Stage();
-        Scene lemonScene = new Scene(lemonGrid, 500, 250);
+        lemonStage.setWidth(400);
+        lemonStage.setHeight(300);
+        Scene lemonScene = new Scene(new GridPane(), 1000, 500);
         lemonStage.setScene(lemonScene);
         lemonStage.setTitle("Suburban Lemonade Stand");
         Button dateBttn = new Button("Show Current Date");
