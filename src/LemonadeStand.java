@@ -4,6 +4,7 @@ import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import java.util.Random;
 import javafx.scene.text.Text;
@@ -19,8 +20,6 @@ public class LemonadeStand extends Application {
         Stage lemonStage = new Stage();
         lemonStage.setWidth(400);
         lemonStage.setHeight(300);
-        Scene lemonScene = new Scene(new GridPane(), 1000, 500);
-        lemonStage.setScene(lemonScene);
         lemonStage.setTitle("Suburban Lemonade Stand");
         Button dateBttn = new Button("Show Current Date");
         Button dwnldBttn = new Button("Download as text file");
@@ -32,7 +31,7 @@ public class LemonadeStand extends Application {
         lemonGrid.add(quitBttn, 3, 0);
         lemonGrid.setHgap(14);
         lemonGrid.setVgap(18);
-
+        Pane root = new Pane();
         Random rand = new Random();
 
         colorIntA = rand.nextInt(256);
@@ -40,7 +39,11 @@ public class LemonadeStand extends Application {
         colorIntC = rand.nextInt(256);
         Color randoColor = Color.rgb(colorIntA, colorIntB, colorIntC);
         lemonScene.setFill(randoColor);
-
+        root.getChildren().add(dateBttn);
+        root.getChildren().add(dwnldBttn);
+        root.getChildren().add(randColorBttn);
+        root.getChildren().add(quitBttn);
+        Scene scene = new Scene(root, 700, 400);
         lemonStage.show(); }
     public static void main(final String[] args) {
         launch(args); }
