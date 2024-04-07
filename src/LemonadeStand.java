@@ -14,6 +14,8 @@ import javafx.stage.Stage;
 import java.util.Date;
 import java.util.Random;
 
+import static javafx.scene.layout.TilePane.setAlignment;
+
 public class LemonadeStand extends Application {
     int colorIntA;
     int colorIntB;
@@ -32,6 +34,11 @@ public class LemonadeStand extends Application {
         randColorBttn.setFont(new Font("Arial", 30));
         Button quitBttn = new Button("Quit Program");
         quitBttn.setFont(new Font("Arial", 30));
+        Label lemonLabel = new Label(null);
+        setAlignment(lemonLabel, javafx.geometry.Pos.CENTER);
+        lemonRoot.setCenter(lemonLabel);
+        lemonLabel.setFont(new Font("Impact", 40));
+
         HBox lemonHBox = new HBox();
         lemonHBox.getChildren().addAll(dateBttn, dwnldBttn, randColorBttn, quitBttn);
         lemonRoot.setTop(lemonHBox);
@@ -40,10 +47,8 @@ public class LemonadeStand extends Application {
             @Override
             public void handle(ActionEvent actionEvent) {
                 Date lemonDateTime = new Date();
-                String formattedLemonDateTime = String.format("The current date and time is %s.",lemonDateTime);
-                Label lemonLabel = new Label(formattedLemonDateTime);
-                lemonLabel.setFont(new Font("Impact", 50));
-                lemonRoot.getChildren().add(lemonLabel);
+                lemonLabel.setText(String.format("The current date and time is %s.",lemonDateTime));
+                //lemonStage.show();
             }});
 
         dwnldBttn.setOnAction(new EventHandler<ActionEvent>() {
