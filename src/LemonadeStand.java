@@ -6,11 +6,17 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
+import javax.swing.*;
+import java.io.FileWriter;
+
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.Date;
 import java.util.Random;
 
@@ -38,23 +44,36 @@ public class LemonadeStand extends Application {
         setAlignment(lemonLabel, javafx.geometry.Pos.CENTER);
         lemonRoot.setCenter(lemonLabel);
         lemonLabel.setFont(new Font("Impact", 40));
-
         HBox lemonHBox = new HBox();
         lemonHBox.getChildren().addAll(dateBttn, dwnldBttn, randColorBttn, quitBttn);
         lemonRoot.setTop(lemonHBox);
         lemonHBox.setAlignment(Pos. CENTER);
+        TextField lemonTextField = new TextField("Enter text here for download file:");
+        setAlignment(lemonTextField, javafx.geometry.Pos.CENTER);
+        lemonRoot.setBottom(lemonTextField);
+        lemonTextField.setFont(new Font("Georgia", 40));
         dateBttn.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
                 Date lemonDateTime = new Date();
                 lemonLabel.setText(String.format("The current date and time is %s.",lemonDateTime));
-                //lemonStage.show();
+
             }});
 
         dwnldBttn.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-               System.out.println("download complete ya jackass");
+                String content = lemonTextField.getText();
+                try {
+                    FileWriter writer = new FileWriter("log.txt");
+                    writer.write(content);
+                    writer.close();
+                    JOptionPane.showMessageDialog(null, "File downloaded successfully!");
+                }catch (IOException ex) {
+                    ex.printStackTrace();
+                    JOptionPane.showMessageDialog(null,"Error downloading file");
+
+                }
             }});
         randColorBttn.setOnAction(new EventHandler<ActionEvent>() {
             @Override
