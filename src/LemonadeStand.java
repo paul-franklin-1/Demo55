@@ -5,11 +5,13 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
+import java.util.Date;
 import java.util.Random;
 
 public class LemonadeStand extends Application {
@@ -37,7 +39,11 @@ public class LemonadeStand extends Application {
         dateBttn.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                System.out.println("the date is 3/22/1888");
+                Date lemonDateTime = new Date();
+                String formattedLemonDateTime = String.format("The current date and time is %s.",lemonDateTime);
+                Label lemonLabel = new Label(formattedLemonDateTime);
+                lemonLabel.setFont(new Font("Impact", 50));
+                lemonRoot.getChildren().add(lemonLabel);
             }});
 
         dwnldBttn.setOnAction(new EventHandler<ActionEvent>() {
