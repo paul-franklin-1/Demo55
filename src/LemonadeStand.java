@@ -1,17 +1,22 @@
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.HBox;
+import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
+
+import java.util.Random;
+
 public class LemonadeStand extends Application {
     int colorIntA;
     int colorIntB;
     int colorIntC;
+    int colorStop = 0;
     public void start(Stage lemonStage){
         BorderPane lemonRoot = new BorderPane();
         Scene lemonScene = new Scene(lemonRoot, 1200,800);
@@ -43,12 +48,19 @@ public class LemonadeStand extends Application {
         randColorBttn.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                System.out.println("a color a color colr!");}});
+                while (colorStop==0){
+                Random lemonRand = new Random();
+                colorIntA = lemonRand.nextInt(256);
+                colorIntB = lemonRand.nextInt(256);
+                colorIntC = lemonRand.nextInt(256);
+                lemonRoot.setBackground(new Background(new BackgroundFill(Color.rgb(colorIntA, colorIntB, colorIntC), CornerRadii.EMPTY, Insets.EMPTY)));
+                colorStop++;
+};}});
 
         quitBttn.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                System.out.println("Program is not quitting, be patient...");
+                javafx.application.Platform.exit();
             }});
         lemonStage.show();}
 
